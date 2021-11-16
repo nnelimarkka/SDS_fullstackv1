@@ -1,0 +1,81 @@
+
+//insert one "row"
+db.posts.insert({
+    title: 'Post one title',
+    body: 'Post one body',
+    category: 'News',
+    likes: 5,
+    tags: ['news', 'events'],
+    user: {
+        name: 'John Doe',
+        status: 'author'
+    },
+    date: Date()
+})
+
+//insert many "rows"
+db.posts.insertMany([
+  {
+    title: 'Post two title',
+    body: 'Post two body',
+    category: 'Technology',
+    date: Date()
+  },
+  {
+    title: 'Post three title',
+    body: 'Post three body',
+    category: 'News',
+    date: Date()
+  },
+  {
+    title: 'Post four title',
+    body: 'Post four body',
+    category: 'Entertainment',
+    date: Date()
+  }
+])
+
+//find all data
+db.posts.find()
+
+//prettyfying data 
+db.posts.find().pretty()
+
+//finding based on certain attribute
+db.posts.find({category: 'News'}).pretty()
+
+//sorting 1 == ascending order, -1 == descending order
+db.posts.find().sort({title: 1}).pretty()
+
+//count amount of documents 
+db.posts.find({category: 'News'}).count()
+
+//limit number of fetched documents
+db.posts.find().limit(2)
+
+//looping through all documents with forEach
+db.posts.find().forEach(function(doc) {print('Blog post: ' + doc.title)})
+
+//fetching only one document with findOne
+db.posts.findOne({likes: 5})
+
+//updating with .update() replaces the document
+db.posts.update({title: "Post two title"}, {
+    title: "Post two title",
+    body: "updated post two body",
+    date: Date()
+},
+{
+    upsert: true
+})
+
+//to update fields inside of the document (without replacing it) use $set
+db.posts.update({title: "Post two title"}, {
+    $set: {
+        body: "Post 2 body",
+        category: "Technology"
+    }
+})
+
+//incrementing numeral attributes with $inc
+db.posts.update({title: "Post one title"}, {$inc: {likes: 3}})
