@@ -79,3 +79,50 @@ db.posts.update({title: "Post two title"}, {
 
 //incrementing numeral attributes with $inc
 db.posts.update({title: "Post one title"}, {$inc: {likes: 3}})
+
+//renaming fields inside documents using $rename
+db.posts.update({title: "Post one title"}, {$rename: {likes: "views"}})
+
+//removing documents
+db.posts.remove({title: "Post four title"})
+
+//document can have subdocuments inside it ie. a post can have an array of comments
+ db.posts.update({title: "Post one title"}, {
+    $set: {
+        comments: [
+            {
+                user: "Mike",
+                body: "first comment!",
+                date: Date()
+            },
+            {
+                user: "Kalle",
+                body: "Second!",
+                date: Date()
+            }
+        ]
+    }
+})
+
+//finding documents based on subdocuments using $elemMatch. In example searching for documents where there is a comment with field user: "Kalle"
+db.posts.find({
+    comments: {
+        $elemMatch: {
+            user: "Kalle"
+        }
+    }
+}).pretty()
+
+//creating index
+db.posts.createIndex({title: "text"})
+
+//index enables searching with $search and $<name of index>
+db.posts.find({
+    $text: {
+        $search: "\"Post o\""
+    }
+}).pretty()
+
+//filtering find with $gt (greater than), works similarly with $gte (greater than or equal to), $lt, and $lte
+db.posts.find({views: {$gt: 3}}).pretty()
+
