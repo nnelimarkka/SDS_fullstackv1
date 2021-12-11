@@ -1,0 +1,23 @@
+{
+  "name": "mean_app",
+  "version": "1.0.0",
+  "description": "MEAN stack application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app",
+    "dev": "nodemon app"
+  },
+  "dependencies": {
+    "bcryptjs": "*",
+    "body-parser": "*",
+    "cors": "*",
+    "express": "*",
+    "jsonwebtoken": "*",
+    "mongoose": "*",
+    "passport": "^0.4.1",
+    "passport-jwt": "*"
+  },
+  "author": "Niklas Nelimarkka",
+  "license": "ISC"
+}
