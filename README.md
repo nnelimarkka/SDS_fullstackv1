@@ -1,4 +1,4 @@
-# SDS_fullstackv1
+# SDS_fullstack
 * All modules are in their respective folders
 
 # Installation instructions
