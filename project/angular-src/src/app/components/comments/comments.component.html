@@ -1,0 +1,29 @@
+<h2 *ngIf="noPost">No post with title: '{{title}}' was found</h2>
+
+<div *ngIf="!noPost && Post" class="content-container">
+  <p class="post-time">
+      Posted: {{Post.date.split("T")[0]}} {{Post.date.split("T")[1].split(".")[0]}} by {{Post.username}}
+  </p>
+  <p class="post-header">{{Post.title}}</p>
+  <div class="code-container">
+    <pre><code>{{Post.body}}</code></pre>
+  </div>
+  <hr />
+  <p class="post-header">Comments:</p>
+  <ul *ngIf="Post.comments && Post.comments.length > 0">
+      <li class="comment-li" *ngFor="let comment of Post.comments">
+          <span class="comment-header">{{comment.date.split("T")[0]}} {{comment.date.split("T")[1].split(".")[0]}} by {{comment.username}}:</span> {{comment.body}}
+      </li>
+  </ul>
+  <p *ngIf="!Post.comments || Post.comments.length == 0">No comments yet...</p>
+</div>
+<div *ngIf="authService.loggedIn()">
+  <h2>Comment input</h2>
+  <form (submit)="onSubmitComment()">
+      <div class="form-group">
+      <label for="comment">comment:</label>
+      <textarea  class="form-control" rows="3" placeholder="Enter comment here" [(ngModel)]="comment" name="comment" ></textarea>
+      </div>
+      <input class="btn btn-lg btn-primary" type="submit" value="Comment">
+  </form>
+</div>

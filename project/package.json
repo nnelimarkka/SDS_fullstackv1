@@ -6,15 +6,22 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app",
-    "dev": "nodemon app"
+    "dev:server": "nodemon app",
+    "install:client": "cd angular-src && npm install",
+    "dev": "concurrently \"cd angular-src && ng serve \" \"npm run dev:server\""
+
   },
   "dependencies": {
     "bcryptjs": "*",
     "body-parser": "*",
+    "concurrently": "^6.4.0",
     "cors": "*",
+    "dotenv": "^10.0.0",
     "express": "*",
+    "express-validator": "^6.14.0",
     "jsonwebtoken": "*",
     "mongoose": "*",
+    "multer": "^1.4.4",
     "passport": "^0.4.1",
     "passport-jwt": "*"
   },

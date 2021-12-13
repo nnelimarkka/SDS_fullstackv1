@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, ExtraOptions } from '@angular/router';
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -16,6 +16,8 @@ import { FlashMessagesModule } from 'angular2-flash-messages';
 import { AuthService } from './services/auth.service';
 import { My404Component } from './components/my404/my404.component';
 import { AuthGuard } from './guards/auth.guard';
+import { PostService } from './services/post.service';
+import { CommentsComponent } from './components/comments/comments.component';
 
 
 const appRoutes: Routes = [
@@ -24,8 +26,9 @@ const appRoutes: Routes = [
   {path: "login", component: LoginComponent},
   {path: "dashboard", component: DashboardComponent, canActivate: [AuthGuard]},
   {path: "profile", component: ProfileComponent, canActivate: [AuthGuard]},
+  {path: "comments/:title", component: CommentsComponent},
   {path: "**", component: My404Component}
-]
+];
 
 @NgModule({
   declarations: [
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     ProfileComponent,
     HomeComponent,
     RegisterComponent,
-    My404Component
+    My404Component,
+    CommentsComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +49,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
     FlashMessagesModule
   ],
-  providers: [ValidateService, AuthService, AuthGuard],
+  providers: [ValidateService, AuthService, AuthGuard, PostService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

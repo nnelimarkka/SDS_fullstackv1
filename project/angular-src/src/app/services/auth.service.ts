@@ -47,6 +47,11 @@ export class AuthService {
     return;
   }
 
+  getToken() {
+    this.loadToken();
+    return this.authToken;
+  }
+
   logout() {
     this.authToken = null;
     this.user = null;

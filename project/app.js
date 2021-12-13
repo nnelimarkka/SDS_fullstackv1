@@ -6,6 +6,7 @@ const passport = require("passport");
 const mongoose = require("mongoose");
 const config = require("./config/database");
 const usersRouter = require("./routes/users");
+const apiRouter = require("./routes/api");
 
 mongoose.connect(config.database);
 
@@ -35,6 +36,7 @@ app.use(passport.session());
 require("./config/passport")(passport);
 
 app.use("/users", usersRouter);
+app.use("/api", apiRouter);
 
 app.get("/", (req, res) => {
     res.send("invalid route")

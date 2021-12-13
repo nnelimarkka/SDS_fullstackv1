@@ -4,7 +4,7 @@
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <a class="navbar-brand" href="#">MEAN auth app</a>
+      <a class="navbar-brand" href="#">Codebook</a>
     </div>
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
@@ -13,9 +13,6 @@
         </li>
       </ul>
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
-          <a class="nav-link" [routerLink]="['/dashboard']">Dashboard </a>
-        </li>
         <li class="nav-item" *ngIf="authService.loggedIn()" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
           <a class="nav-link" [routerLink]="['/profile']">Profile </a>
         </li>
