@@ -13,5 +13,5 @@
 3. run 'npm run dev' in the root project folder, this will start both server and client
 4. site will be accessible on localhost:4200
 
-#Project running
+# Project running
 * Project running example video: https://youtu.be/7KTdmJy2CkI
