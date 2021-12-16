@@ -15,6 +15,7 @@ const multer = require("multer")
 const storage = multer.memoryStorage();
 const upload = multer({storage})
 const config = require("../config/database");
+const hljs = require("highlight.js");
 
 router.get("/posts", (req, res) => {
     Posts.find({}, (err, postArray) => {
@@ -52,6 +53,7 @@ router.get("/posts", (req, res) => {
           username: req.user.username,
           title: req.body.title,
           body: req.body.body,
+          formattedBody: highlight(req.body.body),
           date: Date()
         },
         (err, ok) => {
@@ -81,5 +83,10 @@ router.get("/posts", (req, res) => {
       }
     )
   })
+
+  //highlight code
+  function highlight(code) {
+    return hljs.highlightAuto(code).value;
+  }
 
   module.exports = router;

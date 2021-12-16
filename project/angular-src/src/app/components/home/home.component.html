@@ -7,7 +7,7 @@
         </p>
         <p class="post-header">{{item.title}}</p>
         <div class="code-container">
-            <pre><code>{{item.body}}</code></pre>
+            <pre><code innerHtml="{{item.formattedBody}}"></code></pre>
         </div>
         <a class="page-link" routerLink="comments/{{item.title}}">Comments</a>
     </div>

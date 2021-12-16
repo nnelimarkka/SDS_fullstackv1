@@ -37,6 +37,14 @@ export class PostService {
       .map(res => res.json());
   }
 
+  generateMarkup(code) {
+    console.log("been here");
+    
+    return {
+      __html: code
+    }
+  }
+
   constructor(private http: Http) { }
 
 }

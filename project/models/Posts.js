@@ -14,6 +14,7 @@ let Post = new Schema ({
     username: String,
     title: String,
     body: String,
+    formattedBody: String,
     date: Date,
     comments: [Comments]
 
